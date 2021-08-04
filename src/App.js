@@ -12,7 +12,7 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/reservations/" component={Reservations} />
-          <Route exact path="/Data/" component={Data} />
+          <Route exact path="/data/" component={Data} />
           <Route component={Reservations} />
         </Switch>
       </BrowserRouter>
