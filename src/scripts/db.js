@@ -1,5 +1,3 @@
-const { Database } = require('sqlite3');
-
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('database.db');
 
@@ -55,7 +53,18 @@ function add(table, val) {
         err = `Table ${table} does not exist.`;
         throw err;
     }
+}
 
+function del(table, id) {
+    var stmt;
+    var err;
+    if (table === "Trucks" || table === "Reservations") {
+        stmt = `DELETE FROM ${table} WHERE id = ${id}`
+        db.run(stmt);
+    } else {
+        err = `Table ${table} does not exist.`;
+        throw err;
+    }
 }
 
 function populate() {
@@ -77,11 +86,13 @@ function test() {
     clear();
     initialize();
     populate();
-    db.each("SELECT * FROM Trucks", function(err, row) {
-        console.log(row.id + ": " + row.model);
-        if (err){
-            console.log(err);
-        }
+    db.all("SELECT * FROM Trucks", function(err, rows) {
+        rows.forEach(function (row) {
+            console.log(row.id + ": " + row.model);
+            if (err){
+                console.log(err);
+            }
+        });
     });
     db.close();
 
