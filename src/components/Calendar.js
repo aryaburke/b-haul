@@ -3,11 +3,13 @@ import FullCalendar from '@fullcalendar/react'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import { DataContext } from '../context';
 
+var EVENT_COLOR = "#2C3E50"
+
 const Calendar = () => {
   const context = useContext(DataContext);
     const {
-        trucks,
-        reservations
+      trucks,
+      reservations
     } = context;
 
   var events = [];
@@ -16,7 +18,8 @@ const Calendar = () => {
       id: val.id,
       title: `Truck ${val.truck_id} Reserved`,
       start: val.start,
-      end: val.end
+      end: val.end,
+      color: EVENT_COLOR
     })
   }
 

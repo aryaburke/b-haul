@@ -3,18 +3,18 @@ import React from 'react';
 const Table = ({data, tableId}) => {
     var rows = [];
     var header = false;
-    for (const [id,t] of Object.entries(data)){
+    for (const entry of Object.values(data)){
         var r = []
         if (!header) {
             //this creates a header row once at the beginning
             var h = []
-            for (const key of Object.keys(t)) {
+            for (const key of Object.keys(entry)) {
                 h.push(<th scope="col">{key}</th>)
             }
             rows.push(<tr>{h}</tr>)
             header = true
         }
-        for (const val of Object.values(t)) {
+        for (const val of Object.values(entry)) {
             var v = val;
             if (v instanceof Date) {
                 //the only objects in the data will be dates,
