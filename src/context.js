@@ -12,8 +12,8 @@ var MOCKRESERVATIONS = {
     1: { 
         id: 1, 
         truck_id: 3, 
-        start: new Date(2021,7,10,3), 
-        end: new Date(2021,7,10,4),
+        start: new Date(2021,7,10,10), 
+        end: new Date(2021,7,10,11),
         customer: "Paul Newman"
     },
     2: { 

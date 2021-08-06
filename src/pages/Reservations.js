@@ -3,7 +3,7 @@ import Calendar from "../components/Calendar";
 
 const Reservations = () => {
   return (
-    <div>
+    <div className="calendar-container">
       <Calendar/>
     </div>
 );
