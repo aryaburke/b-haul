@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import Table from "../components/Table";
+import { DataContext } from '../context';
 
 const Data = () => {
+  const context = useContext(DataContext);
+    const {
+        trucks,
+        reservations
+    } = context;
+  
   return (
     <div>
-      <Table />
+      <Table data={trucks} tableId="trucks-table"/>
     </div>
 );
 };

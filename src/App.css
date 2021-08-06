@@ -1,8 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: content-box;
-  flex-direction: row;
 }
 
 :root {
@@ -17,6 +15,11 @@ body {
   background-color: var(--main-light);
   color: var(--main-dark);
   display: inline-block;
+  padding-top: 5%;
+}
+
+.container {
+  margin-top:5%
 }
 
 /* navbar css */
@@ -35,6 +38,7 @@ body {
   flex-direction: row;
   padding-top: 1.25%;
   list-style-type: none;
+  
 }
 
 .nav-links li {
@@ -46,4 +50,18 @@ body {
   font-weight: bold;
   font-size: 18pt;
   color: var(--main-dark)
+}
+
+/*table css*/
+.data-table {
+  border: 1px solid black;
+  text-align: center;
+}
+
+.data-table th {
+  text-transform: capitalize;
+}
+
+#trucks-table {
+  width: 10em;
 }

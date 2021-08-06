@@ -68,4 +68,15 @@ export default class DataProvider extends Component {
 
 const DataConsumer = DataContext.Consumer;
 
+/*function withDataConsumer(Component) {
+    //this provides an easy way to add a consumer to a component
+    return function ConsumerWrapper(props) {
+      return (
+        <DataConsumer>
+          {value => <Component {...props} context={value} />}
+        </DataConsumer>
+      );
+    };
+  }*/
+
 export { DataProvider, DataConsumer, DataContext };
