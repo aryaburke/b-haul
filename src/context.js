@@ -8,7 +8,22 @@ var MOCKTRUCKS = {
     2: {id: 2, model: "18ft"},
     3: {id: 3, model: "24ft"}
 };
-var MOCKRESERVATIONS = {};
+var MOCKRESERVATIONS = {
+    1: { 
+        id: 1, 
+        truck_id: 3, 
+        start: new Date(2021,7,10,3), 
+        end: new Date(2021,7,10,4),
+        customer: "Paul Newman"
+    },
+    2: { 
+        id: 2, 
+        truck_id: 1, 
+        start: new Date(2021,7,11,12), 
+        end: new Date(2021,7,11,20),
+        customer: "Tony the Tiger"
+    }
+};
 
 export default class DataProvider extends Component {
     state = {

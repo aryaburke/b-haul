@@ -10,8 +10,11 @@ const Data = () => {
     } = context;
   
   return (
-    <div>
+    <div className="tables-container">
+      <div className="table-title">Trucks</div>
       <Table data={trucks} tableId="trucks-table"/>
+      <div className="table-title">Reservations</div>
+      <Table data={reservations} tableId="reservations-table"/>
     </div>
 );
 };

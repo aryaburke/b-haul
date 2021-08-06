@@ -15,7 +15,13 @@ const Table = ({data, tableId}) => {
             header = true
         }
         for (const val of Object.values(t)) {
-            r.push(<td>{val}</td>)
+            var v = val;
+            if (v instanceof Date) {
+                //the only objects in the data will be dates,
+                //so if a date is found we turn it to a string
+                v = v.toString();
+            }
+            r.push(<td>{v}</td>)
         }
         rows.push(<tr>{r}</tr>)
     }
