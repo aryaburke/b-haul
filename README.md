@@ -1,4 +1,4 @@
-# b-haul: A Simple U-haul-like Interface
+# b-haul: A Simple Truck Rental Interface
 
 Built using React.js, JavaScript, Node.js, and FullCalendar.
 ## To Use
