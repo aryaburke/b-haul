@@ -20,18 +20,22 @@ const ReservationButton = () => {
     
 
         //check that all values are filled
-        if (!newRes.truck_id || !newRes.start || !newRes.end || !newRes.date) {
+        if (!newRes.truck_id || newRes.start === undefined || newRes.end === undefined || !newRes.date) {
             throw `Cannot make reservation - must fill out whole form.`
         }
 
         //make the integer values into dates
             //hardcoding date here
+        console.log(newRes.date);
         newRes.start = new Date(2021,7,newRes.date,newRes.start);
         newRes.end = new Date(2021,7,newRes.date,newRes.end);
 
         //check if they intersect
-        for (var val in Object.entries(reservations)) {
-            if (newRes.truck_id === val.truck_id && (newRes.start < val.end || newRes.end > val.start || (newRes.start === val.start && newRes.end === val.end))) {
+        for (var key in reservations) {
+            var val = reservations[key]
+            if (newRes.truck_id === val.truck_id && 
+                ((newRes.start < val.end && newRes.start > val.start) ||
+                 (newRes.end < val.end && newRes.end > val.start) || (newRes.start === val.start && newRes.end === val.end))) {
                 throw `Reservation conflicts with reservation #${val.id}`;
             }
         }
