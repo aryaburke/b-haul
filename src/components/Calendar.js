@@ -18,7 +18,6 @@ const Calendar = () => {
   useEffect(() => {
     function getEvents() {
     var events = []
-    console.log("syncing");
     for (const val of Object.values(reservations)) {
       events.push({
         id: val.id,
