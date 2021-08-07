@@ -1,23 +1,29 @@
-import React , { useContext } from 'react'
+import React , { useContext, useState, useEffect } from 'react'
 import { DataContext, NEWRES } from '../context';
 
 
 
 const ReservationButton = () => {
-    /* CONTEXT AND CONTEXT FUNCTIONS */
     const context = useContext(DataContext);
+    const [errorState, setErrorState] = useState('')
     var {
         reservations,
         newRes
     } = context;
 
-    
+    useEffect(() => {
+        setErrorState(errorState);
+    }, [errorState])
 
     const addReservation = () => {
         //this function adds a reservation to the data
         /*checking for conflicts - this is obviously a place where
             we would benefit from the ability to query the db using sql*/
     
+        //clear errorState
+        setErrorState('');
+
+        console.log(newRes)
 
         //check that all values are filled
         if (!newRes.truck_id || newRes.start === undefined || newRes.end === undefined || !newRes.date) {
@@ -27,15 +33,18 @@ const ReservationButton = () => {
         //make the integer values into dates
             //hardcoding date here
         console.log(newRes.date);
-        newRes.start = new Date(2021,7,newRes.date,newRes.start);
-        newRes.end = new Date(2021,7,newRes.date,newRes.end);
+        var startDate = new Date(2021,7,newRes.date,newRes.start);
+        var endDate = new Date(2021,7,newRes.date,newRes.end);
 
         //check if they intersect
         for (var key in reservations) {
             var val = reservations[key]
             if (newRes.truck_id === val.truck_id && 
-                ((newRes.start < val.end && newRes.start > val.start) ||
-                 (newRes.end < val.end && newRes.end > val.start) || (newRes.start === val.start && newRes.end === val.end))) {
+                ((startDate < val.end && startDate > val.start) ||
+                 (endDate < val.end && endDate > val.start) || 
+                 (startDate < val.start && endDate > val.end) ||
+                 (startDate > val.start && endDate < val.end) ||
+                 (startDate === val.start && endDate === val.end))) {
                 throw `Reservation conflicts with reservation #${val.id}`;
             }
         }
@@ -49,8 +58,8 @@ const ReservationButton = () => {
         reservations[id] = {
             id: newRes.id,
             truck_id: newRes.truck_id,
-            start: newRes.start,
-            end: newRes.end,
+            start: startDate,
+            end: endDate,
         };
 
         //clear newRes
@@ -60,13 +69,16 @@ const ReservationButton = () => {
     const buttonClick = () => {
         try {
             addReservation();
-        } catch(err) {
-            console.log(err);
+        } catch(e) {
+            setErrorState(e);
         }
     }
 
     return(
-        <button id="reservation-button" onClick={buttonClick}>Make a reservation!</button>
+        <div>
+            <button id="reservation-button" onClick={buttonClick}>Make a reservation!</button>
+            <div className="error">{errorState}</div>
+        </div>
     )
 
 }
