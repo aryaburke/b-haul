@@ -108,3 +108,8 @@ tr:nth-child(odd) {background-color: #f2f2f2;}
   margin: 0.25em;
   margin-top: 0.5em;
 }
+
+.reservation-button {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}

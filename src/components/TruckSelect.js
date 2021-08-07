@@ -3,6 +3,7 @@ import Select from "react-select";
 import { DataContext } from '../context';
 
 const TruckSelect = () => {
+    /*TruckSelect is responsible for the truck selector*/
     const context = useContext(DataContext);
     const {
         newRes,

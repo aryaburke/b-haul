@@ -3,6 +3,7 @@ import Select from "react-select";
 import { DataContext } from '../context';
 
 const TimeSelect = (start) => {
+    /*timeSelect is responsible for the start and end selectors*/
     const context = useContext(DataContext);
     const {
         newRes

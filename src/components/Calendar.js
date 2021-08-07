@@ -1,19 +1,23 @@
-import React , { useContext } from 'react'
-import FullCalendar, { render } from '@fullcalendar/react'
+import React , { useContext, useState, useEffect } from 'react'
+import FullCalendar from '@fullcalendar/react'
 import timeGridPlugin from '@fullcalendar/timegrid'
-import { DataContext, withDataConsumer } from '../context';
+import { DataContext } from '../context';
 
 var EVENT_COLOR = "#2C3E50"
 
 const Calendar = () => {
+  /*Calendar is the whole left side of the reservations page, the big cal*/
   const context = useContext(DataContext);
+  const [eventState, setEventState] = useState([])
   const {
     reservations
   } = context;
-  var events = []
-  
-  console.log("render")
-  function syncEvents() {
+
+  //this could be simplified, but was attempting to use useEffect
+  //to force a re-render
+  useEffect(() => {
+    function getEvents() {
+    var events = []
     console.log("syncing");
     for (const val of Object.values(reservations)) {
       events.push({
@@ -24,7 +28,12 @@ const Calendar = () => {
         color: EVENT_COLOR
       })
     }
+    return events;
   }
+  setEventState(getEvents());
+}, [reservations])
+  
+  
 
   return (
     <FullCalendar
@@ -32,8 +41,7 @@ const Calendar = () => {
       initialView="timeGridWeek"
       initialDate="2021-08-08"
       allDaySlot={false}
-      events={events}
-      onChange={syncEvents()}
+      events={eventState}
     />
   )
 }

@@ -3,6 +3,7 @@ import Select from "react-select";
 import { DataContext } from '../context';
 
 const DateSelect = () => {
+    /*DateSelect is the date selection menu*/
     const context = useContext(DataContext);
     const {
         newRes

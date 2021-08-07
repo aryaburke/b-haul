@@ -3,6 +3,12 @@ var db = new sqlite3.Database('database.db');
 var trucks = {};
 var reservations = {};
 
+/*this file is not used in the actual code because the sqlite3 node library
+cannot be run locally in the browser. however, it was late in the process of
+development when i discovered this, so i left it in to show the working
+sql functions i was developing.*/
+
+
 //YYYY-MM-DD HH:MM
 function initialize() {
     //creating tables and their schemas if they don't already exist
@@ -118,11 +124,12 @@ function populate() {
 
 async function test() {
     //!test function
+    clear();
     initialize();
+    populate();
     sync();
     //setTimeout(() => {console.log(module.exports.trucks)},500)
     db.close();
-
 }
 
 test();

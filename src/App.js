@@ -6,6 +6,7 @@ import Data from './pages/Data'
 import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
 function App() {
+  /*App is responsible for the whole webpage*/
   return (
     <div className="App">
       <BrowserRouter>

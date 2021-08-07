@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Table = ({data, tableId}) => {
+    /*table is responsible for generating the data tables*/
     var rows = [];
     var header = false;
     for (const entry of Object.values(data)){

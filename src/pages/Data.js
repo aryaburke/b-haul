@@ -3,6 +3,7 @@ import Table from "../components/Table";
 import { DataContext } from '../context';
 
 const Data = () => {
+  /*data is the "Our Data" page*/
   const context = useContext(DataContext);
     const {
         trucks,

@@ -4,6 +4,7 @@ import { DataContext, NEWRES } from '../context';
 
 
 const ReservationButton = () => {
+    /*ReservationButton is the button responsible for checking if a reservation is valid, returning errors if not, and adding it if so*/
     const context = useContext(DataContext);
     const [errorState, setErrorState] = useState('')
     var {
@@ -76,7 +77,7 @@ const ReservationButton = () => {
 
     return(
         <div>
-            <button id="reservation-button" onClick={buttonClick}>Make a reservation!</button>
+            <button className="reservation-button" onClick={buttonClick}>Make a reservation!</button>
             <div className="error">{errorState}</div>
         </div>
     )

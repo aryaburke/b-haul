@@ -1,5 +1,10 @@
 import React, { Component } from "react";
 
+/*context.js is responsible for the context and data structures used in
+this project. although a relational database would have been preferred
+and was attempted in /scripts/OLD_db.js the library does not work locally, and so a more primitive datatype of js dictionaries was used here*/
+
+
 const DataContext = React.createContext();
 
 //empty reservation data
