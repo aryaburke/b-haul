@@ -2,28 +2,24 @@ import React , { useContext } from 'react'
 import Select from "react-select";
 import { DataContext } from '../context';
 
-const TimeSelect = (start) => {
+const TruckSelect = () => {
     const context = useContext(DataContext);
     const {
-        newRes
+        newRes,
+        trucks
     } = context;
 
     //handling change, checking if start or end selector
     const handleChange = (e) => {
         if (e) {
-            //start is passed as an object with the actual boolean as a property
-            if (start.start) {
-                newRes.start = e.value;
-            } else {
-                newRes.end = e.value;
-            }
+            newRes.truck_id = e.value;
         }
     }
 
-    //constructing the time  options
+    //constructing the truck  options
     var options = [];
-    for (let i = 0; i < 24; i++) {
-        options.push({ value: i, label: i + ":00"});
+    for (const val of Object.values(trucks)) {
+        options.push({ value: val.id, label: val.id + " - " + val.model});
     }
 
     return(
@@ -31,4 +27,4 @@ const TimeSelect = (start) => {
     )
 }
 
-export default TimeSelect;
+export default TruckSelect;

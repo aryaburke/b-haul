@@ -93,6 +93,7 @@ tr:nth-child(odd) {background-color: #f2f2f2;}
   margin-left: 1.5em;
 }
 
+
 .calendar-container {
   font-size:10pt;
   width: 50em;
@@ -101,4 +102,9 @@ tr:nth-child(odd) {background-color: #f2f2f2;}
 
 .reservation-maker-container {
   width: 20em
+}
+
+.details {
+  margin: 0.25em;
+  margin-top: 0.5em;
 }

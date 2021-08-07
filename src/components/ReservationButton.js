@@ -1,45 +1,68 @@
 import React , { useContext } from 'react'
-import Select from "react-select";
-import { DataContext } from '../context';
+import { DataContext, NEWRES } from '../context';
 
 
 
 const ReservationButton = () => {
     /* CONTEXT AND CONTEXT FUNCTIONS */
     const context = useContext(DataContext);
-    const {
-        reservations
+    var {
+        reservations,
+        newRes
     } = context;
 
-    const addReservation = (truck_id, start, end, customer) => {
+    
+
+    const addReservation = () => {
         //this function adds a reservation to the data
         /*checking for conflicts - this is obviously a place where
             we would benefit from the ability to query the db using sql*/
+    
+
+        //check that all values are filled
+        if (!newRes.truck_id || !newRes.start || !newRes.end || !newRes.date) {
+            throw `Cannot make reservation - must fill out whole form.`
+        }
+
+        //make the integer values into dates
+            //hardcoding date here
+        newRes.start = new Date(2021,7,newRes.date,newRes.start);
+        newRes.end = new Date(2021,7,newRes.date,newRes.end);
+
+        //check if they intersect
         for (var val in Object.entries(reservations)) {
-            if (truck_id === val.truck_id && (start < val.end || end > val.start)) {
+            if (newRes.truck_id === val.truck_id && (newRes.start < val.end || newRes.end > val.start || (newRes.start === val.start && newRes.end === val.end))) {
                 throw `Reservation conflicts with reservation #${val.id}`;
             }
         }
         //finds the lowest available id and uses it for reservation
         var id = 1;
-        while (Object.keys(reservations).includes(id)) {
+        while (Object.keys(reservations).includes(id.toString())) {
             id++;
         }
-        //add the reservation to a copy of the dictionary
-        var newRes = {
-            id: id,
-            truck_id: truck_id,
-            start: start,
-            end: end,
-            customer: customer,
-        };
+        newRes.id = id;
         //sets the state
-        reservations[id] = newRes;
+        reservations[id] = {
+            id: newRes.id,
+            truck_id: newRes.truck_id,
+            start: newRes.start,
+            end: newRes.end,
+        };
+
+        //clear newRes
+        newRes = NEWRES;
     };
 
-    //! need a button
+    const buttonClick = () => {
+        try {
+            addReservation();
+        } catch(err) {
+            console.log(err);
+        }
+    }
+
     return(
-        <div></div>
+        <button id="reservation-button" onClick={buttonClick}>Make a reservation!</button>
     )
 
 }

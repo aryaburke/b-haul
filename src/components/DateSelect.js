@@ -2,7 +2,7 @@ import React , { useContext } from 'react'
 import Select from "react-select";
 import { DataContext } from '../context';
 
-const TimeSelect = (start) => {
+const DateSelect = () => {
     const context = useContext(DataContext);
     const {
         newRes
@@ -11,19 +11,15 @@ const TimeSelect = (start) => {
     //handling change, checking if start or end selector
     const handleChange = (e) => {
         if (e) {
-            //start is passed as an object with the actual boolean as a property
-            if (start.start) {
-                newRes.start = e.value;
-            } else {
-                newRes.end = e.value;
-            }
+            newRes.date = e.value;
         }
     }
 
-    //constructing the time  options
+    //constructing the truck  options
     var options = [];
-    for (let i = 0; i < 24; i++) {
-        options.push({ value: i, label: i + ":00"});
+    //just hardcoding in the date range here
+    for (var i = 8; i <= 14; i++) {
+        options.push({ value: i, label: "August " + i});
     }
 
     return(
@@ -31,4 +27,4 @@ const TimeSelect = (start) => {
     )
 }
 
-export default TimeSelect;
+export default DateSelect;

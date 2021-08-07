@@ -2,6 +2,15 @@ import React, { Component } from "react";
 
 const DataContext = React.createContext();
 
+//empty reservation data
+var NEWRES = {
+  id: undefined,
+  truck_id: undefined,
+  start: undefined,
+  end: undefined,
+  date: undefined
+}
+
 //mock data to initialize data with, example of data structure
 var MOCKTRUCKS = {
   1: { id: 1, model: "Van" },
@@ -13,15 +22,13 @@ var MOCKRESERVATIONS = {
     id: 1,
     truck_id: 3,
     start: new Date(2021, 7, 10, 10),
-    end: new Date(2021, 7, 10, 11),
-    customer: "Paul Newman",
+    end: new Date(2021, 7, 10, 11)
   },
   2: {
     id: 2,
     truck_id: 1,
     start: new Date(2021, 7, 11, 12),
-    end: new Date(2021, 7, 11, 20),
-    customer: "Tony the Tiger",
+    end: new Date(2021, 7, 11, 20)
   },
 };
 
@@ -30,13 +37,7 @@ export default class DataProvider extends Component {
     trucks: {},
     reservations: {},
     hasMockData: false,
-    newRes: {
-      id: undefined,
-      truck_id: undefined,
-      start: undefined,
-      end: undefined,
-      customer: undefined
-    }
+    newRes: NEWRES
   };
 
   componentDidMount = async () => {
@@ -71,7 +72,7 @@ export default class DataProvider extends Component {
 
 const DataConsumer = DataContext.Consumer;
 
-/*function withDataConsumer(Component) {
+function withDataConsumer(Component) {
     //this provides an easy way to add a consumer to a component
     return function ConsumerWrapper(props) {
       return (
@@ -80,6 +81,6 @@ const DataConsumer = DataContext.Consumer;
         </DataConsumer>
       );
     };
-  }*/
+  }
 
-export { DataProvider, DataConsumer, DataContext };
+export { DataProvider, DataConsumer, DataContext, withDataConsumer, NEWRES };
