@@ -86,10 +86,19 @@ tr:nth-child(odd) {background-color: #f2f2f2;}
   width: 50em;
 }
 
-/*calendar css*/
+/*reservations css*/
+.reservations-container {
+  display: flex;
+  margin-top: 1.5em;
+  margin-left: 1.5em;
+}
+
 .calendar-container {
   font-size:10pt;
   width: 50em;
-  margin-top: 1.5em;
-  margin-left: 1.5em;
+  margin-right: 1.5em
+}
+
+.reservation-maker-container {
+  width: 20em
 }

@@ -30,6 +30,13 @@ export default class DataProvider extends Component {
     trucks: {},
     reservations: {},
     hasMockData: false,
+    newRes: {
+      id: undefined,
+      truck_id: undefined,
+      start: undefined,
+      end: undefined,
+      customer: undefined
+    }
   };
 
   componentDidMount = async () => {

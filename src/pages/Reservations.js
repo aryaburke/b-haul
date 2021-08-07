@@ -4,9 +4,14 @@ import ReservationMaker from "../components/ReservationMaker";
 
 const Reservations = () => {
   return (
-    <div className="calendar-container">
-      <Calendar/>
-      <ReservationMaker/>
+    <div className="reservations-container">
+      <div className="calendar-container">
+        <Calendar/>
+      </div>
+      <div className="reservation-maker-container">
+        <ReservationMaker/>
+      </div>
+      
     </div>
 );
 };

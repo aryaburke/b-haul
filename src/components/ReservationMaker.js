@@ -1,57 +1,13 @@
-import React , { useContext, useMemo } from 'react'
-import Select from "react-select";
-import { DataContext } from '../context';
+import React from 'react';
+import TimeSelect from './TimeSelect';
 
-
-
-const ReservationMaker = () => {
-    /* CONTEXT AND CONTEXT FUNCTIONS */
-    const context = useContext(DataContext);
-    const {
-        reservations
-    } = context;
-
-    const addReservation = (truck_id, start, end, customer) => {
-        //this function adds a reservation to the data
-        /*checking for conflicts - this is obviously a place where
-            we would benefit from the ability to query the db using sql*/
-        for (var val in Object.entries(reservations)) {
-            if (truck_id === val.truck_id && (start < val.end || end > val.start)) {
-                throw `Reservation conflicts with reservation #${val.id}`;
-            }
-        }
-        //finds the lowest available id and uses it for reservation
-        var id = 1;
-        while (Object.keys(reservations).includes(id)) {
-            id++;
-        }
-        //add the reservation to a copy of the dictionary
-        var newRes = {
-            id: id,
-            truck_id: truck_id,
-            start: start,
-            end: end,
-            customer: customer,
-        };
-        //sets the state
-        reservations[id] = newRes;
-    };
-
-    /* CONFIGURING SELECTED OPTIONS */
-    const options = useMemo(
-        () => [
-          { value: "apple", label: "Apple" },
-          { value: "banana", label: "Banana" },
-          { value: "orange", label: "Orange" },
-          { value: "berry", label: "Berry" },
-        ],
-        []
-      );
-    
+const ReservationMaker = () => { 
     return(
-        <Select options={options} defaultValue={options[0]} isClearable />
+        <div>
+            <TimeSelect start={true}/>
+            <TimeSelect start={false}/>
+        </div>
     )
-
 }
 
 export default ReservationMaker;
